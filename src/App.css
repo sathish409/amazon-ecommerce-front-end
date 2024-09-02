@@ -1,38 +1,145 @@
-.App {
-  text-align: center;
+/* Header */
+
+*{
+  box-sizing: border-box;  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.d-flex{
+    display: flex;
+}
+.header{
+    display: flex;
+    background: black;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    height: 10vh;
+width: 100vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.logo{
+
+width: 60px;
+object-fit: contain;
+
+
+
+}
+.search{
+    display: flex;
+  flex: 1;
+    align-items: center;
+    padding-right: 15px;
+    padding-left: 5px;
+   
+    
+}
+.search input{
+    padding: 10px;
+    height: 12px;
+    border: none;
+    width: 100%;
+   
+}
+.top{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  gap: 5px;
+
 }
 
-.App-link {
-  color: #61dafb;
+.serach-icon{
+   background-color:rgb(234, 161, 24);
+   padding: 2px;
+   height: 22px !important;
+  
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.options{
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.link{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+.cart{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5px;
+
+    color: white;
+}
+.basket{
+   font-size: 2rem;
+}
+
+
+/* signin and signup */
+
+.form-center{
+  width: 450px;
+  margin: auto;
+  
+}
+
+.carousel img {
+    height: 60vh;
+    object-fit: cover;
   }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+/* home page */
+.main{
+    height: 250vh;
+ 
+}
+
+.footer{
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+height: 80px;
+
+
+
+}
+
+/* dashboard */
+
+.bottom ul li{
+    list-style-type: none;
+    display: flex;
+font-weight: bolder;
+padding-right: 20px;
+}
+
+.side-bar{
+    width: 200px;
+}
+
+.product Button {
+margin-right:20px;
+}
+
+/* home */
+
+
+.img{
+    width: 30%;
+}
+.details{
+    width: 70%;
 }
