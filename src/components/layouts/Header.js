@@ -15,13 +15,17 @@ export const  Header=()=> {
   const dispatch= useDispatch()
   const {user}= useSelector((state)=>state.userInfo)
 
+  const {product} = useSelector((state)=>state.productInfo)
 
+  
 
   return (
     <div className="header">
+      <div className="am-im">
    <Link to ="/">
-        <img className="logo" src="https://www.hatchwise.com/wp-content/uploads/2022/05/amazon-logo-1024x683.png" alt="" />
+        <img src="https://m.media-amazon.com/images/I/413Ais4J2uL.jpg" alt="" />
         </Link>
+        </div>
 <div className="search">
   <input type="text" />
   <FaSearch className="serach-icon"/>

@@ -8,13 +8,12 @@ import SellerSignUp from './pages/seller_signup/SellerSignUp';
 import { ToastContainer } from 'react-toastify';
 import Dashboard from './pages/dashboard/Dashboard';
 import Category from './pages/category/Category';
-import Cart from './pages/cart/Cart';
-
 import AddProduct from './pages/product/AddProduct';
 import VerifyEmail from './pages/user_signIn_signUp/VerifyEmail';
 import PaymentOption from './pages/Payment-option/PaymentOption';
 import Order from './pages/order/Order';
 import Customer from './pages/customer/Customer';
+import ProductLanding from './pages/cart/ProductLanding'
 import MyProfile from './pages/my-profile/MyProfile';
 import { PrivateRoute } from './components/private-route/PrivateRoute';
 import Product from './pages/product/Product';
@@ -24,6 +23,8 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllcategoryAction } from './pages/category/CategoryAction';
 import { getAllProductAction } from './pages/product/ProductAction';
+import Cart from './pages/cart/Cart';
+import CheckOut from './pages/checkout/CheckOut';
 function App() {
   const dispatch = useDispatch()
   useEffect(()=>{
@@ -46,7 +47,10 @@ function App() {
       <Route path='/signup' element= {<SignUp/>} ></Route>
 
 
+      <Route path='/product-landing/:_id' element= {<ProductLanding/>} ></Route>
       <Route path='/cart/:_id' element= {<Cart/>} ></Route>
+      <Route path='/checkout' element= {<CheckOut/>} ></Route>
+
 
       <Route path='/add-product' element= {<AddProduct/>} ></Route>
       <Route path='/edit-category/_id' element= {<EditCategory/>} ></Route>

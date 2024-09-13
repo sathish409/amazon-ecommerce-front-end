@@ -29,15 +29,20 @@ const Home = () => {
 </Container>
  
 <div className="On-sale mt-3">
-      <h4>On sale</h4>
+      <h4>Trending</h4>
       <hr />
     </div>
 <Container className='mt-5 fluid'>
 <Row>
   <Col className='d-flex justify-content-between flex-wrap mt-2 gap-3'>
   
-  {productList.map((item, i)=> item.trending === true && <Link to={`/cart/${item._id}`} className='nav-link'>
-    <CustomCard  {...item}/></Link>)}
+  {productList.map((item, i)=> item.trending === true && <Link to={`/product-landing/${item._id}`} className='nav-link'>
+    <CustomCard  {...item}/>
+    
+    </Link>
+  
+  )}
+  
   </Col>
 </Row>
 </Container>

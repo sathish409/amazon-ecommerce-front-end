@@ -21,6 +21,7 @@ const location= useLocation()
 
  const {user} = useSelector((state)=>state.userInfo)
  const fromLocation= location?.state?.from?.location?.pathname || "/dashboard"
+ console.log(location)
  useEffect(()=>{
 user?._id && navigate(fromLocation);
 

@@ -10,19 +10,22 @@
 }
 .header{
     display: flex;
-    background: black;
+    background-color: black;
     padding: 10px;
     justify-content: center;
     align-items: center;
     justify-content: space-between;
     height: 10vh;
 width: 100vw;
+/* mix-blend-mode: multiply;  */
 }
 
 
-.logo{
-
+.header img{
+    /* mix-blend-mode: multiply; 
+    background-blend-mode: color; */
 width: 60px;
+
 object-fit: contain;
 
 
@@ -102,7 +105,12 @@ object-fit: contain;
 /* home page */
 .main{
     height: 250vh;
+
+
  
+}
+.main-layout{
+    background:rgb(221, 221, 227) ;
 }
 
 .footer{
@@ -136,10 +144,144 @@ margin-right:20px;
 
 /* home */
 
+.bottom{
+  
+   
+}
+.wrapper{
+    height: 150vh;
+    position: relative;
+}
+.thumbnail{
 
-.img{
-    width: 30%;
+    width: 80%;
+    padding: 10px;
+    
+    
+}
+.thumbnail >img{
+width: 50%;
+height: 70%;
+
+position: fixed;
+
+
+
 }
 .details{
     width: 70%;
+    padding-left: 30px;
+}
+.star{
+    color: yellow;
+}
+.add button{
+  width: 100%;
+}
+.list{
+    list-style-type: none;
+
+}
+ input{
+    width: 50px;
+    background:rgb(221, 221, 227) ;
+  border-color: rgb(221, 221, 227);
+  border: none;
+  height: 20px;
+}
+.qty{
+   border-radius: 10px;
+   border: 10px;
+   background: rgb(221, 221, 227);
+   width: 85px;
+}
+.sh-list{
+display: flex;
+
+  padding: 10px;
+  height: 150vh;
+    gap: 1rem;
+}
+.sh-nav{
+    justify-content: space-between;
+}
+.left{
+    width: 70%;
+    padding: 20px;
+   border: 1px;
+background: white;
+}
+.right{
+    width: 30%;
+    background:white;
+    height: 50vh;
+}
+.right Button{
+    display: flex;
+    justify-content: center;
+    padding: 2px;
+    width: 90%;
+    height: 30px;
+    border-radius: 15px;
+}
+.item-details{
+justify-content: space-between;
+gap: 5.4rem;
+}
+.listOf-items {
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+.am-box{
+    padding: 0 30px;
+
+}
+.nav-bar{
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+  padding: 0 30px;
+  background: rgb(221, 221, 227);
+  box-shadow: 0 2px;
+  background-color: rgb(230, 237, 240);
+  margin-bottom:1rem;
+  
+    
+}
+.am-img{
+  
+    mix-blend-mode: multiply;
+}
+.am-img > img{
+    mix-blend-mode: multiply; 
+    background-blend-mode: color;
+  
+}
+.container{
+    margin: auto;
+    gap: 2rem;
+ 
+}
+.wrapper span{
+    color: rgb(195, 96, 60);
+    font-weight: bolder;
+    padding-left: 90px;
+
+}
+.wrapper{
+    margin-bottom: 2rem;
+}
+.container form{
+ padding-right:30%;
+
+}
+.form-group{
+   width: 70%; 
+   
+      
+}
+.method{
+    padding:  0 37.5% 0 8.5%;
+
 }

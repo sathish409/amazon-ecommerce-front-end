@@ -4,7 +4,7 @@ import { Footer } from './Footer'
 
 export const MainLayout = ({children, title}) => {
   return (
-    <div>
+    <div className='main-layout'>
         <Header/>
         <div className="">
           {title}
