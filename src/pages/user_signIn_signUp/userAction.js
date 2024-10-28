@@ -36,3 +36,6 @@ export const autoLogin=()=>async(dispatch)=>{
 dispatch(getUserAction())
   
 }
+
+
+//get order history using user id

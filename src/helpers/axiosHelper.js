@@ -5,6 +5,8 @@ const rootEP = process.env.REACT_APP_ROOTAPI
 const userEP = rootEP + "/users";
 const categoryEP = rootEP + "/categories";
 const productEP = rootEP + "/products";
+const paymentEP = rootEP + "/payments";
+
 
 
 
@@ -76,6 +78,15 @@ export const getUser = async()=>{
     return axiosProcessor({
         method: "get",
         url: userEP,
+        isPrivate: true,
+      });
+
+}
+export const udateUserAddress = async()=>{
+
+    return axiosProcessor({
+        method: "post",
+        url: userEP + "/address",
         isPrivate: true,
       });
 
@@ -174,6 +185,16 @@ export const getAllProducts=async()=>{
       });
 
 }
+export const getAllCatIdProducts=async(obj)=>{
+console.log(obj);
+    return axiosProcessor({
+        method: "get",
+        url: productEP + "/search-products/" + obj??'',
+        isPrivate: true,
+        obj,
+      });
+
+}
 export const getOneProduct=async(_id)=>{
 
     return axiosProcessor({
@@ -183,3 +204,29 @@ export const getOneProduct=async(_id)=>{
       });
 
 }
+
+//stroe payment
+
+export const postPayment= async(data)=>{
+
+    return axiosProcessor({
+        method: "post",
+        url: paymentEP  +  "/create-payment",
+        isPrivate: true,
+      data,
+        
+      });
+
+}
+export const reduceProductQty=async(data)=>{
+    console.log(data);
+        return axiosProcessor({
+            method: "post",
+            url: productEP + "/reduce-quantity",
+            isPrivate: true,
+            data,
+          });
+    
+    }
+
+

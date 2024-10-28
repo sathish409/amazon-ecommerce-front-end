@@ -11,7 +11,7 @@ import Category from './pages/category/Category';
 import AddProduct from './pages/product/AddProduct';
 import VerifyEmail from './pages/user_signIn_signUp/VerifyEmail';
 import PaymentOption from './pages/Payment-option/PaymentOption';
-import Order from './pages/order/Order';
+import Order from './pages/order/OrderHistory';
 import Customer from './pages/customer/Customer';
 import ProductLanding from './pages/cart/ProductLanding'
 import MyProfile from './pages/my-profile/MyProfile';
@@ -25,6 +25,8 @@ import { getAllcategoryAction } from './pages/category/CategoryAction';
 import { getAllProductAction } from './pages/product/ProductAction';
 import Cart from './pages/cart/Cart';
 import CheckOut from './pages/checkout/CheckOut';
+import SearchPage from './pages/search-page/SearchPage';
+import OrderHistory from './pages/order/OrderHistory';
 function App() {
   const dispatch = useDispatch()
   useEffect(()=>{
@@ -48,8 +50,10 @@ function App() {
 
 
       <Route path='/product-landing/:_id' element= {<ProductLanding/>} ></Route>
+      <Route path='/search-page/:form' element= {<SearchPage/>} ></Route>
+
       <Route path='/cart/:_id' element= {<Cart/>} ></Route>
-      <Route path='/checkout' element= {<CheckOut/>} ></Route>
+      <Route path='/checkout/:subtotal' element= {<CheckOut/>} ></Route>
 
 
       <Route path='/add-product' element= {<AddProduct/>} ></Route>
@@ -64,7 +68,7 @@ function App() {
       <Route path='/product' element= {<PrivateRoute><Product/></PrivateRoute>} ></Route>
 
       <Route path='/payment-option' element= {<PrivateRoute><PaymentOption/></PrivateRoute>} ></Route>
-      <Route path='/order' element= {<PrivateRoute><Order/></PrivateRoute>} ></Route>
+      <Route path='/order-history' element= {<PrivateRoute><OrderHistory/></PrivateRoute>} ></Route>
       <Route path='/customer' element= {<PrivateRoute><Customer/></PrivateRoute>} ></Route>
       <Route path='/profile' element= {<PrivateRoute><MyProfile/></PrivateRoute>} ></Route>
       <Route path='/dashboard' element= {<PrivateRoute><Dashboard/></PrivateRoute>} ></Route>

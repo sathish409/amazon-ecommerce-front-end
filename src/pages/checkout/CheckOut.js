@@ -1,15 +1,95 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { GoLock } from "react-icons/go";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { CustomInput } from '../../components/custom_input/CustomInput';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { udateUserAddress } from '../../helpers/axiosHelper';
+import { getUserAction } from '../user_signIn_signUp/userAction';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+import { CheckoutForm } from '../../components/checkout-form/CheckoutForm';
+import { CustomModel } from '../../components/custom-modal/CustomModel';
+import { setShowModal } from '../../system-input/systemSlice';
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe('pk_test_51Q2NqPRqmABuaXCPVVD0GQFIpRp9wou8LJPxuI6Lssp8aZlhvQvNmDlEqlevqKm3oIbjAHcgC5bDTIYK0szuuRKV00VPPLHmKz');
 
 const CheckOut = () => {
+  const {showModal} = useSelector((state)=>state.systemInfo)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [showSpinner, setShowSpinner]= useState(true)
+  const [form, setForm] = useState()
   const {user} = useSelector((state)=>state.userInfo)
   const {cartList} = useSelector((state)=>state.productInfo)
-console.log(user)
+
+useEffect(()=>{
+  if(!user._id){
+    navigate("/signin")
+  }
+
+},[user._id, navigate])
+
+const {_id, email, fname, lname} = user
+
+const handleOnChange =(e)=>{
+  const {name, value} = e.target;
+  setForm({
+    ...form,
+    [name]:value,
+  })
+
+}
+const handleOnAddCard= ()=>{
+  dispatch(setShowModal(true))
+}
+const handleOnSubmit =(e)=>{
+  e.preventDefault()
+  setShowSpinner(false);
+ 
+}
+console.log(form)
+
+const addressInput= [
+  {
+    label:"Address",
+    name:"address1",
+    placeholder:"unit-3",
+    type:"text",
+    required:true,
+  },
+  {
+    name:"address2",
+    placeholder:"8 lower",
+    type:"text",
+
+  },
+  {
+    label:"Postcode",
+    name:"postcode",
+    placeholder:"2145",
+    type:"text",
+    required:true,
+  },
+  {
+    label:"City/Suburb",
+    name:"city",
+    placeholder:"wenty",
+    type:"text",
+    required:true,
+  },
+  {
+    label:"State/Territory",
+    name:"state",
+    placeholder:"8 lower",
+    type:"text",
+    required:true,
+  },
+  
+]
+
   const inputs=[
     {
       label:"Fisrt Name",
@@ -33,7 +113,8 @@ console.log(user)
   placeholder:"sat@boga",
   type:"email",
   required:true,
-  value:user.email
+  value:user.email,
+  readOnly:true,
   },
 {
   label:"Phone Number",
@@ -43,46 +124,18 @@ console.log(user)
   required:true,
   value:user.phone
 },
-{
-  label:"Address",
-  name:"address1",
-  placeholder:"unit-3",
-  type:"text",
-  required:true,
-},
-{
-  name:"address2",
-  placeholder:"8 lower",
-  type:"text",
-  required:true,
-},
-{
-  label:"Postcode",
-  name:"postcode",
-  placeholder:"2145",
-  type:"text",
-  required:true,
-},
-{
-  label:"City/Suburb",
-  name:"city",
-  placeholder:"wenty",
-  type:"text",
-  required:true,
-},
-{
-  label:"State/Territory",
-  name:"state",
-  placeholder:"8 lower",
-  type:"text",
-  required:true,
-},
 
 
 
 ]
+const options = {
+  // passing the client secret obtained from the server
+  clientSecret: '{{CLIENT_SECRET}}',
+};
   return (
+    
     <div className='wrapper'>
+      
       <div className="am-box">
       <div className="nav-bar d-flex border">
         <div className="am-img">
@@ -99,57 +152,84 @@ console.log(user)
       </div>
       </div>
       </div>
-    
-      <span>1 Enter a new delivery address</span>
+
       <div className="container d-flex mt-4">
-  
-        <div className="left border p-4">
+      
+        {showSpinner && 
+        
+       ( <div className="left border p-4">
+        <span>Customer account details</span>
+        <hr />
+ <Form onSubmit={handleOnSubmit} className='rounded '>
    
-  <Form  className='rounded '>
-    <h2>Add a new address</h2>
-    <hr />
-        {inputs.map((item, i)=>  <CustomInput key={i} {...item}/>)}
-<div className="d-grid mt-2">
+        {inputs.map((item, i)=>  <CustomInput onChange= {handleOnChange} key={i} {...item}/>)}
     
-        </div>
     </Form>
-    <Form.Group className='mb-3 form-group'>
-<Form.Label>City/Suburb</Form.Label>
-<Form.Select name='parentCatId'>
-<option value="">---Select a Category---</option>
-        <option >
-   
-        </option>
-   
-</Form.Select>
-    </Form.Group>
-    <Form.Group className='mb-3 form-group'>
-<Form.Label>City/Suburb</Form.Label>
-<Form.Select name='parentCatId'>
-<option value="">---Select a Category---</option>
-        <option >
-   
-        </option>
-   
-</Form.Select>
-    </Form.Group>
-    <Button variant='warning' type='submit'>Use this address</Button>
-        </div>
+ <Form onSubmit={handleOnSubmit} className='rounded '>
+   <span>Delivery address details</span>
+   {addressInput.map((item, i)=>  <CustomInput onChange= {handleOnChange} key={i} {...item}/>)}
+<input type="checkbox" name="" id="" />   
+<Button variant='warning' type='submit'>Use this address</Button>
+</Form>
+
+
+        </div>)
+        }
+        { !showSpinner && (
+             <div className="deliver-address d-flex">
+             <div className="delivery">
+               <h4>1 Delivery Address</h4>
+             </div>
+             <div className="address">
+               <p>{form.fname}</p>
+               <p>{form.address1}</p>
+               <p>{form.postcode}</p>
+               <p>{form.city}</p>
+               <p>{form.state}</p>
+
+
+             </div>
+             </div>
+        )
+
+        }
+     
+        
+  
         <div className="right border">
 
         </div>
       </div>
+      
+{!showSpinner && 
      <div className="method ">
      <hr />
-<div className="payment-method">
-  2 {""} Payment Method
+
+  <div className="payment-method">
+  2 {""} Add Payment Method
+  <div className="">
+<a onClick={handleOnAddCard}  href="">Add card details</a>
+  <Elements stripe={stripePromise} >
+  <CustomModel title="Add credit card details" show={showModal}>
+  <CheckoutForm  add={form}/>
+  </CustomModel>
+
+    </Elements>
+  </div>
 </div>
+
+
+
 <hr />
-<div className="items-delivery">
+
+  <div className="items-delivery">
   3  Items and delivery
+  <div className=""> delivery to ....</div>
 </div>
+
+
 <hr />
-     </div>
+     </div>}
     </div>
   )
 }

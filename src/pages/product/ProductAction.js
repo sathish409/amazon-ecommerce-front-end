@@ -1,5 +1,5 @@
-import { getAllProducts, getOneProduct } from "../../helpers/axiosHelper"
-import { setAProduct, setCartList, setProductList } from "./Productslice"
+import { getAllCatIdProducts, getAllProducts, getOneProduct } from "../../helpers/axiosHelper"
+import { setAProduct, setCartList, setProductList, setSearchProduct } from "./Productslice"
 
 
 
@@ -9,6 +9,15 @@ export const getAllProductAction= ()=>async(dispatch)=>{
    const {status, products} = ProductList
     if(status ==="success"){
    dispatch(setProductList(products))
+    }
+}
+export const getCatIdProductsAction= (obj)=>async(dispatch)=>{
+
+    const ProductList= await getAllCatIdProducts(obj)
+    console.log(ProductList)
+   const {status, list} = ProductList
+    if(status ==="success"){
+   dispatch(setSearchProduct(list))
     }
 }
 

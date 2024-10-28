@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { MainLayout } from '../../components/layouts/MainLayout'
 import { Link, useParams } from 'react-router-dom'
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Alert, Button, Col, Container, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAProductAction, postToCart } from '../product/ProductAction'
 import { FaStar } from "react-icons/fa6";
@@ -24,7 +24,13 @@ const handleOnAddToCart=(product)=>{
 //   product,]
 // )
 //get product id, quantity
-dispatch(postToCart({product, qty}))
+if(quantity > qty){
+  dispatch(postToCart({product, qty}))
+}
+else{
+  alert("Sorry for the inconvenience, product is not available")
+}
+
 
 }
   useEffect(()=>{

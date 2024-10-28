@@ -11,12 +11,12 @@
 .header{
     display: flex;
     background-color: black;
-    padding: 10px;
+    padding: 20px;
     justify-content: center;
     align-items: center;
     justify-content: space-between;
     height: 10vh;
-width: 100vw;
+width: auto;
 /* mix-blend-mode: multiply;  */
 }
 
@@ -79,12 +79,16 @@ object-fit: contain;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 5px;
-
-    color: white;
+     color: white;
+   
 }
 .basket{
    font-size: 2rem;
+ margin-right: -15px;
+}
+.cart-badge{
+    color: red;
+    font-weight: bolder;
 }
 
 
@@ -104,16 +108,20 @@ object-fit: contain;
 
 /* home page */
 .main{
-    height: 250vh;
-
+height: auto;
+overflow: visible;
+width: auto;
 
  
 }
 .main-layout{
     background:rgb(221, 221, 227) ;
+    width: auto;
 }
 
 .footer{
+    position: relative;
+    width: 100%;
     background: black;
     color: white;
     display: flex;
@@ -152,24 +160,55 @@ margin-right:20px;
     height: 150vh;
     position: relative;
 }
+.custom-card{
+    width: 170px;
+background: white;
+height: 100%;
+flex-grow: 1;       /* Sets a minimum width for each product item */
+padding: 10px;
+margin: 5px;
+text-align: center;
+border: 1px solid #ccc;
+box-sizing: border-box; 
+border-radius: 10px;
+
+ 
+}
+.sale{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.card-img{
+    width: auto;
+    height: 40%;
+ margin-bottom: 25px;
+    padding: 10px;
+
+}
+.card-body{
+    width: auto;
+    height: 30%;
+    
+}
 .thumbnail{
 
-    width: 80%;
-    padding: 10px;
+    width: 60%;
+    padding: 100px;
     
     
 }
 .thumbnail >img{
-width: 50%;
+width: auto;
 height: 70%;
 
-position: fixed;
+
 
 
 
 }
 .details{
-    width: 70%;
+    width: 40%;
     padding-left: 30px;
 }
 .star{
@@ -284,4 +323,9 @@ gap: 5.4rem;
 .method{
     padding:  0 37.5% 0 8.5%;
 
+}
+.deliver-address{
+    justify-content: space-between;
+    gap: 12rem;
+    padding: 15px;
 }

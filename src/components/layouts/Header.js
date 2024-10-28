@@ -8,14 +8,36 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {  Link } from 'react-router-dom';
 import { signOutUserAction } from "../../pages/user_signIn_signUp/userAction.js";
+import { useEffect, useState } from "react";
+import { getCatIdProductsAction } from "../../pages/product/ProductAction.js";
+import { getAllcategoryAction } from "../../pages/category/CategoryAction.js";
 
 
 
 export const  Header=()=> {
+  const [form, setForm] =useState("");
   const dispatch= useDispatch()
   const {user}= useSelector((state)=>state.userInfo)
+  const [filteredCategory, setFilteredCategory] = useState([])
 
-  const {product} = useSelector((state)=>state.productInfo)
+  const {cartList} = useSelector((state)=>state.productInfo)
+  const {catList} = useSelector((state)=>state.categoryInfo)
+  const searchCategory = catList.filter((item)=> item.slug.toLowerCase().includes(form))
+  const {_id} = searchCategory
+  console.log(_id)
+  const handleOnChange =(e)=>{
+    const {value} =e.target;
+
+    setForm(value.toLowerCase())
+
+  }
+  const handleOnSubmit = ()=>{
+   
+setFilteredCategory(searchCategory)
+  }
+  
+  console.log(filteredCategory)
+
 
   
 
@@ -27,8 +49,16 @@ export const  Header=()=> {
         </Link>
         </div>
 <div className="search">
-  <input type="text" />
-  <FaSearch className="serach-icon"/>
+  <input onChange={handleOnChange} type="text" value={form} />
+  
+  <Link to={`/search-page/${form}`} className='nav-link'>
+  
+    <FaSearch  onSubmit={()=>handleOnSubmit()} className="serach-icon"/>
+
+  
+    
+    </Link>
+
  
 </div>
 
@@ -70,10 +100,12 @@ export const  Header=()=> {
 <div className="cart">
 
     <span className="top">
-    <FaShoppingCart  className="basket"/>
+  
+    <FaShoppingCart className="basket"/>
+    
     </span>
+    {cartList.length > 0 &&  (<span className="cart-badge"> {cartList.length}</span>)}
 
-    <span className="bottom">Basket</span>
 
 </div>
 </div>
@@ -82,4 +114,5 @@ export const  Header=()=> {
     </div>
   );
 }
+
 

@@ -20,32 +20,31 @@ const Home = () => {
       <h4>On sale</h4>
       <hr />
     </div>
-<Container className='mt-5 fluid'>
-<Row>
-  <Col className='d-flex justify-content-between flex-wrap mt-2 gap-3'>
-  {productList.map((item, i)=> item.onsale === true && <CustomCard  {...item}/>)}
-  </Col>
+<Row className='mt-5'>
+
+  <Col className='sale d-flex justify-content-between mt-2 gap-3'>
+  {productList.map((item, i)=> item.onsale === true && <Link to={`/product-landing/${item._id}`} className='nav-link'>
+    <CustomCard  {...item}/>
+    
+    </Link>)}
+
+</Col>
 </Row>
-</Container>
  
 <div className="On-sale mt-3">
       <h4>Trending</h4>
       <hr />
     </div>
-<Container className='mt-5 fluid'>
-<Row>
-  <Col className='d-flex justify-content-between flex-wrap mt-2 gap-3'>
+    <Row className='mt-5'>
+
+<Col className='sale d-flex justify-content-between mt-2 gap-3'>
+{productList.map((item, i)=> item.trending === true && <Link to={`/product-landing/${item._id}`} className='nav-link'>
+  <CustomCard  {...item}/>
   
-  {productList.map((item, i)=> item.trending === true && <Link to={`/product-landing/${item._id}`} className='nav-link'>
-    <CustomCard  {...item}/>
-    
-    </Link>
-  
-  )}
-  
-  </Col>
+  </Link>)}
+
+</Col>
 </Row>
-</Container>
     </div>
   </MainLayout>
   )

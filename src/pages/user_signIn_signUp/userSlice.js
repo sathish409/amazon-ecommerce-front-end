@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: {},
+  orderHistory:[]
 };
 const userSlice = createSlice({
   name: "user",
@@ -9,7 +10,7 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
-    },
+    }
   },
 });
 

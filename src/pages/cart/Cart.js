@@ -11,6 +11,7 @@ const Cart = () => {
     const dispatch = useDispatch()
     const [qty, setQty] = useState(1)
     const {_id} = useParams()
+
     const {cartList} = useSelector((state)=>state.productInfo)
    
     const calculateSubtotal = (cartList) => {
@@ -54,9 +55,9 @@ console.log(`Subtotal: $${subtotal.toFixed(2)}`);
           
             </div> 
             <div className="right">
-            <p>Subtotal ({cartList.length}) : ${subtotal}</p>
+            <p>Subtotal ({cartList.length})  ${subtotal}</p>
             <p><input type="checkbox" />This order contains a gift</p>
-            <Link  to="/checkout" className='nav-link'>
+            <Link  to={`/checkout/${subtotal}`} className='nav-link'>
         <div className='d-flex justify-content-center '>
    
     <Button variant='warning' type='submit'>Proceed to checkout</Button>

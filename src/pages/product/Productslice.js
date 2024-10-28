@@ -5,6 +5,7 @@ const initialState ={
     productList:[],
     product:{},
     cartList: [],
+    searchProduct:[],
     
 }
 
@@ -15,6 +16,9 @@ const productSlice= createSlice({
 
         setProductList:(state, {payload=[]})=>{
             state.productList = payload;
+        },
+        setSearchProduct:(state, {payload=[]})=>{
+            state.searchProduct = payload;
         },
         setAProduct:(state, {payload={}})=>{
             state.product=payload
@@ -39,7 +43,15 @@ const productSlice= createSlice({
            
 
          }
-            state.cartList.push(item)
+    
+         const existingItem = state.cartList.find((product)=>product._id === item._id)
+         if(existingItem){
+            existingItem.productquantity += 1;
+         }
+         else{
+            state.cartList.push({...item, productquantity:1})
+         }
+         
        
         
           
@@ -49,6 +61,6 @@ const productSlice= createSlice({
 
 const {reducer, actions} =  productSlice;
 
-export const {setProductList, setAProduct, setCartList}= actions;
+export const {setProductList, setAProduct, setCartList, setSearchProduct}= actions;
  export default reducer;
 

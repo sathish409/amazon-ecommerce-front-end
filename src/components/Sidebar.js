@@ -35,7 +35,7 @@ export const Sidebar = () => {
             </ul>
             <ul>
                 <li>
-                    <Link className='nav-link  d-flex align-items-center gap-2 ' to="/order">Order</Link>
+                    <Link className='nav-link  d-flex align-items-center gap-2 ' to="/order-history">Order</Link>
                 </li>
             </ul>
             <ul>
