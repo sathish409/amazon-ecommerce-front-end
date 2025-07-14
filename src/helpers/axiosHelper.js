@@ -146,7 +146,7 @@ export const changePassword=async(data)=>{
 
 
 export const postCategory=async(data)=>{
-
+console.log(data)
     return axiosProcessor({
         method: "post",
         url: categoryEP,

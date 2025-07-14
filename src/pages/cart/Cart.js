@@ -15,8 +15,8 @@ const Cart = () => {
     const {cartList} = useSelector((state)=>state.productInfo)
    
     const calculateSubtotal = (cartList) => {
-        return cartList.reduce((accumulator, item) => {
-          return accumulator + item.price ;
+        return cartList.reduce((accumulator, qty) => {
+          return accumulator + qty.price ;
         }, 0); // Initial value of accumulator is 0
       };
       console.log(cartList)

@@ -6,6 +6,7 @@ const initialState ={
     product:{},
     cartList: [],
     searchProduct:[],
+
     
 }
 
@@ -34,7 +35,7 @@ const productSlice= createSlice({
          const item  = {
             _id,
             discountPrice:itemPrice ,
-            price,
+            price:itemPrice,
             productquantity:payload.qty,
             producttype,
             productname,

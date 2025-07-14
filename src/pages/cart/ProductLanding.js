@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { Alert, Button, Col, Container, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAProductAction, postToCart } from '../product/ProductAction'
-import { FaStar } from "react-icons/fa6";
+import { FaStar, FaVolumeHigh } from "react-icons/fa6";
 
 const ProductLanding = () => {
   const [qty, setQty] = useState(1)
@@ -12,12 +12,14 @@ const ProductLanding = () => {
   const dispatch = useDispatch()
   const {product} = useSelector((state)=>state.productInfo)
 
-const {thumbnail, producttype, price, quantity, description} = product
+const {thumbnail,productname, producttype, price, quantity, description} = product
 console.log(product)
 const handleOnChange=(e)=>{
   const {value}= e.target;
   setQty(value)
+  console.log(qty)
 }
+
 const handleOnAddToCart=(product)=>{
 // setForm(
 //  [ ...form,

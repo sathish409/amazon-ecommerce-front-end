@@ -329,3 +329,6 @@ gap: 5.4rem;
     gap: 12rem;
     padding: 15px;
 }
+.new-star:hover{
+cursor: pointer;
+}

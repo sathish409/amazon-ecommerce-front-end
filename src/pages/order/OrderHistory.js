@@ -1,48 +1,66 @@
-import React from 'react'
-import { UserLayout } from '../../components/layouts/UserLayout'
-import { useSelector } from 'react-redux'
-import Table from 'react-bootstrap/Table';
-import { Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { UserLayout } from "../../components/layouts/UserLayout";
+import { useDispatch, useSelector } from "react-redux";
+import Table from "react-bootstrap/Table";
+import { Button } from "react-bootstrap";
+import { Review } from "../../components/review/Review";
+import { CustomModel } from "../../components/custom-modal/CustomModel";
+import { setShowModal } from "../../system-input/systemSlice";
 
 const OrderHistory = () => {
+  const { showModal } = useSelector((state) => state.systemInfo);
+  const [purchaseProduct, setPurchaseProduct] = useState();
+  const dispatch = useDispatch();
+  const { purchaseHistory } = useSelector((state) => state.userInfo.user);
 
-  const {purchaseHistory} = useSelector((state)=> state.userInfo.user)
-
-  console.log(purchaseHistory)
+  console.log(purchaseHistory);
+  const handleOnAddReview = (obj) => {
+    dispatch(setShowModal(true));
+    setPurchaseProduct(obj);
+  };
+  console.log(purchaseProduct)
   return (
     <UserLayout title="Order History">
-  <div>
+      <CustomModel title="Give you review" show={showModal}>
+        <Review {...purchaseProduct} />
+      </CustomModel>
 
-
-
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Product Id</th>
-          <th>Purchase Date</th>
-          <th>Quantity</th>
-        </tr>
-      </thead>
-      <tbody >
-      {purchaseHistory.map(({productId, quantity, purchaseDate, _id}, i)=>(
-         <tr key={_id}>
-               <td>{i + 1}</td>
-         <td>{productId}</td>
-         <td>{purchaseDate.slice(0, 10)}</td>
-         <td>{quantity}</td>
-    <td>
-      <Button variant="warning" >Give Review</Button>
-    </td>
-       </tr>
-      ))}
-       
-      </tbody>
-    </Table>
-  </div>
+      <div>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Product Id</th>
+              <th>Purchase Date</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {purchaseHistory.map(
+              ({ productId, productName, quantity, purchaseDate, _id }, i) => (
+                <tr key={_id}>
+                  <td>{i + 1}</td>
+                  <td>{productName}</td>
+                  <td>{purchaseDate.slice(0, 10)}</td>
+                  <td>{quantity}</td>
+                  <td>
+                    <Button
+                      onClick={() =>
+                        handleOnAddReview({ _id, productId, productName })
+                      }
+                      variant="warning"
+                    >
+                      Give Review
+                    </Button>
+                  </td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </Table>
+      </div>
     </UserLayout>
-  
-  )
-}
+  );
+};
 
-export default OrderHistory
+export default OrderHistory;
