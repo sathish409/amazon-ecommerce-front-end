@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Nav from 'react-bootstrap/Nav';
+
 import { useSelector } from 'react-redux';
 
 export const Sidebar = () => {
@@ -47,6 +47,13 @@ export const Sidebar = () => {
             <ul>
                 <li>
                     <Link className='nav-link  d-flex align-items-center gap-2 ' to="/profile">My Profile</Link>
+
+                </li>
+            </ul>
+                <ul>
+                <li>
+                    <Link className='nav-link  d-flex align-items-center gap-2 ' to="/reviews-table">Reviews table</Link>
+                    
                 </li>
             </ul>
         </div>

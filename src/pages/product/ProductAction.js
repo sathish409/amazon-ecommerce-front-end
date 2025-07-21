@@ -1,5 +1,5 @@
-import { getAllCatIdProducts, getAllProducts, getOneProduct } from "../../helpers/axiosHelper"
-import { setAProduct, setCartList, setProductList, setSearchProduct } from "./Productslice"
+import { getAllCatIdProducts, getAllProducts, getOneProduct, getReviews } from "../../helpers/axiosHelper"
+import { setAProduct, setCartList, setProductList, setReviewsList, setSearchProduct } from "./Productslice"
 
 
 
@@ -33,4 +33,12 @@ export const getAProductAction= (_id)=>async(dispatch)=>{
 export const postToCart= (product)=>async(dispatch)=>{
 console.log(product)
    dispatch(setCartList(product))
+}
+export const getAllReviewAction= ()=>async(dispatch)=>{
+const reviewsList = await getReviews()
+const {status, reviews}= reviewsList
+if( status === "success"){
+    dispatch(setReviewsList(reviews))   
+}
+  console.log(reviews)
 }

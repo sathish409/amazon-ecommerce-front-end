@@ -6,6 +6,7 @@ const initialState ={
     product:{},
     cartList: [],
     searchProduct:[],
+    reviewsList:[],
 
     
 }
@@ -56,12 +57,18 @@ const productSlice= createSlice({
        
         
           
-        }
+        },
+        setReviewsList:(state, {payload=[]})=>{
+            console.log(payload)
+            state.reviewsList=payload
+                
+        },
+        
     }
 })
 
 const {reducer, actions} =  productSlice;
 
-export const {setProductList, setAProduct, setCartList, setSearchProduct}= actions;
+export const {setProductList, setAProduct, setCartList, setSearchProduct, setReviewsList}= actions;
  export default reducer;
 

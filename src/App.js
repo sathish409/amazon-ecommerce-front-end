@@ -26,6 +26,7 @@ import Cart from "./pages/cart/Cart";
 import CheckOut from "./pages/checkout/CheckOut";
 import SearchPage from "./pages/search-page/SearchPage";
 import OrderHistory from "./pages/order/OrderHistory";
+import ReviewTable from "./pages/reviews/ReviewTable";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -115,6 +116,14 @@ function App() {
           element={
             <PrivateRoute>
               <Category />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="/reviews-table"
+          element={
+            <PrivateRoute>
+              <ReviewTable />
             </PrivateRoute>
           }
         ></Route>

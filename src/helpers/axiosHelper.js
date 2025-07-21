@@ -6,6 +6,7 @@ const userEP = rootEP + "/users";
 const categoryEP = rootEP + "/categories";
 const productEP = rootEP + "/products";
 const paymentEP = rootEP + "/payments";
+const reviewEP = rootEP + "/user-reviews";
 
 
 
@@ -26,7 +27,7 @@ if(isPrivate){
     try {
         const resp =await axios(obj)
         return resp.data
-        console.log(resp)
+
     } catch (error) {
 
         const errorMsg = error?.response?.data?.message;
@@ -228,5 +229,23 @@ export const reduceProductQty=async(data)=>{
           });
     
     }
-
+export const postReview=async(data)=>{
+    console.log(data);
+        return axiosProcessor({
+            method: "post",
+            url: reviewEP,
+            isPrivate: true,
+            data,
+          });
+    
+    }
+    export const getReviews=async()=>{
+    console.log();
+        return axiosProcessor({
+            method: "get",
+            url: reviewEP,
+            isPrivate: true,
+          });
+    
+    }
 

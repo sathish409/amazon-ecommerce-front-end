@@ -3,11 +3,16 @@ import React, { useState } from 'react';
 import {CustomInput} from '../custom_input/CustomInput';
 import { Button } from 'react-bootstrap';
 import { FaStar } from "react-icons/fa6";
+import { postReview } from '../../helpers/axiosHelper';
+import { toast } from 'react-toastify';
+import { getAllReviewAction } from '../../pages/product/ProductAction';
+import { useDispatch } from 'react-redux';
 
  
 
 export const Review = ({_id, productId, productName}) =>{
 
+  const dispatch = useDispatch()
 const [rating, setRating]= useState({num:5})
 const handleOnChange =(e)=>{
     const  {name, value}= e.target;
@@ -24,12 +29,20 @@ const handleOnStar=(num)=>{
         num,
     })
 }
-const handleOnSubmit= (e)=>{
+const handleOnSubmit= async(e)=>{
     e.preventDefault()
     const obj = {
-        ...rating,  _id, productId, productName
+        ...rating,  purchaseId:_id, productId, productName
     }
   console.log(obj)
+  //sending review to data base
+const {status, message}= await postReview(obj)
+toast[status](message)
+
+// if status is success then call the review api and fetch all the reviews and update the store
+if (status === "success"){
+
+}
 }
 
 
