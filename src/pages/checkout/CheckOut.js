@@ -25,12 +25,12 @@ const CheckOut = () => {
   const {user} = useSelector((state)=>state.userInfo)
   const {cartList} = useSelector((state)=>state.productInfo)
 
-useEffect(()=>{
-  if(!user._id){
-    navigate("/signin")
-  }
+// useEffect(()=>{
+//   if(!user._id){
+//     navigate("/signin")
+//   }
 
-},[user._id, navigate])
+// },[user._id, navigate])
 
 const {_id, email, fname, lname} = user
 
@@ -208,7 +208,9 @@ const options = {
   <div className="payment-method">
   2 {""} Add Payment Method
   <div className="">
-<a onClick={handleOnAddCard}  href="">Add card details</a>
+<Button type="button" onClick={() => setShowModal(true)}>
+  Add Card Details
+</Button>
   <Elements stripe={stripePromise} >
   <CustomModel title="Add credit card details" show={showModal}>
   <CheckoutForm  add={form}/>

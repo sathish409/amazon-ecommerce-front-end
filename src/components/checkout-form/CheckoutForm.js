@@ -36,7 +36,7 @@ console.log(`Subtotal: $${subtotal.toFixed(2)}`);
       if(!stripe || !elements){
               // Stripe.js hasn't yet loaded.
       // Make sure to disable form submission until Stripe.js has loaded.
-        return;
+        return alert("not ready to process the payment");
       }
       //call api to get the client secret
       const obj=  {

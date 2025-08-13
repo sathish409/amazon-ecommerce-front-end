@@ -12,6 +12,8 @@ const OrderHistory = () => {
   const [purchaseProduct, setPurchaseProduct] = useState();
   const dispatch = useDispatch();
   const { purchaseHistory } = useSelector((state) => state.userInfo.user);
+ 
+
 
   console.log(purchaseHistory);
   const handleOnAddReview = (obj) => {
@@ -21,7 +23,7 @@ const OrderHistory = () => {
   console.log(purchaseProduct)
   return (
     <UserLayout title="Order History">
-      <CustomModel title="Give you review" show={showModal}>
+      <CustomModel title="Give your review" show={showModal}>
         <Review {...purchaseProduct} />
       </CustomModel>
 
@@ -37,21 +39,31 @@ const OrderHistory = () => {
           </thead>
           <tbody>
             {purchaseHistory.map(
-              ({ productId, productName, quantity, purchaseDate, _id }, i) => (
+              ({ productId, productName, quantity, purchaseDate, _id, reviewSubmitted}, i) => (
                 <tr key={_id}>
                   <td>{i + 1}</td>
                   <td>{productName}</td>
                   <td>{purchaseDate.slice(0, 10)}</td>
                   <td>{quantity}</td>
                   <td>
-                    <Button
+                    {
+                      reviewSubmitted ? (
+                        <span className="text-success fw-bolder">Review submitted</span>
+                      )
+                      :
+                      (
+  <Button
                       onClick={() =>
                         handleOnAddReview({ _id, productId, productName })
                       }
                       variant="warning"
                     >
+                      
                       Give Review
                     </Button>
+                      )
+                    }
+                  
                   </td>
                 </tr>
               )

@@ -21,7 +21,7 @@ import EditCategory from "./pages/category/EditCategory";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAllcategoryAction } from "./pages/category/CategoryAction";
-import { getAllProductAction } from "./pages/product/ProductAction";
+import { getAllProductAction, getAllReviewAction } from "./pages/product/ProductAction";
 import Cart from "./pages/cart/Cart";
 import CheckOut from "./pages/checkout/CheckOut";
 import SearchPage from "./pages/search-page/SearchPage";
@@ -32,6 +32,7 @@ function App() {
   useEffect(() => {
     dispatch(getAllProductAction());
     dispatch(getAllcategoryAction());
+          dispatch(getAllReviewAction())
   }, [dispatch]);
   return (
     <div className="">

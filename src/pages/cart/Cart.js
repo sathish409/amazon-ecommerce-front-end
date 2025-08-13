@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAProductAction, postToCart } from '../product/ProductAction'
 import { Link, useParams } from 'react-router-dom'
 import { CustomCart } from '../../components/custom_input/CustomCart'
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
+import { FaCaretRight } from "react-icons/fa";
 
 const Cart = () => {
     const dispatch = useDispatch()
@@ -44,13 +45,60 @@ console.log(`Subtotal: $${subtotal.toFixed(2)}`);
 
 </div>
 <hr />
-<div className="listOf-items gap-2">
-{
-            cartList.map((item, i)=>
-            <CustomCart key={i} {...item}/>)
-        }
+{!cartList.length && (<div className="listOf-items gap-2">
+
+      <div className="empty border rounded">
+        <span>Your Cart list is empty</span>
+        <span>SHop today's deal</span>
+        <div className="d-flex g-5 ">
+    <Link to="/signin">
+                          <FaCaretRight />
+                          <Button className='rounded ' type='submit' variant='warning'> Sign In to your account</Button>
+                        </Link>
+                  <Link to="/signup">
+                          <FaCaretRight />
+                          <Button  type='submit' variant='warning'> Sign up</Button>
+                        </Link>          
+        </div>
+     
         
-            </div>
+      </div>
+            </div>) }
+
+{cartList.length && (<div className="listOf-items gap-2">
+
+   <div><Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>thumbnail</th>
+          <th>productquantity</th>
+          <th>discountPrice</th>
+          <th>productname</th>
+        
+
+        </tr>
+      </thead>
+      <tbody>
+  {cartList.map(({thumbnail, productquantity,discountPrice, productname}, i)=>(
+          <tr key={_id}>
+          
+          <td>{i + 1}</td>
+
+          <td>
+            <img src={thumbnail} alt="" width={100} /></td>
+          <td>{productquantity}</td>
+          <td>{discountPrice}</td>
+          <td>{productname}</td>
+        </tr>       
+            ))}
+              <td className=''>${subtotal}</td>
+       
+      </tbody>
+    </Table></div>
+            </div>) }
+            
+
     
           
             </div> 

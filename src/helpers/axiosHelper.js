@@ -248,4 +248,23 @@ export const postReview=async(data)=>{
           });
     
     }
+      export const patchReview=async({_id, ...data})=>{
+    console.log();
+        return axiosProcessor({
+            method: "patch",
+            url: reviewEP + "/" + _id,
+            data,
+            isPrivate: true,
+          });
+    
+    }
+      export const deleteReview=async(_id)=>{
+    console.log();
+        return axiosProcessor({
+            method: "delete",
+            url: reviewEP + "/" + _id,
+            isPrivate: true,
+          });
+    
+    }
 

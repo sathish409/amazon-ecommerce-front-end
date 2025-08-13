@@ -5,15 +5,16 @@ import { Alert, Button, Col, Container, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAProductAction, postToCart } from '../product/ProductAction'
 import { FaStar, FaVolumeHigh } from "react-icons/fa6";
+import { ReviewStars } from '../../components/review-stars/ReviewStars'
 
 const ProductLanding = () => {
   const [qty, setQty] = useState(1)
   const {_id} = useParams()
   const dispatch = useDispatch()
-  const {product} = useSelector((state)=>state.productInfo)
+  const {product, reviewsList} = useSelector((state)=>state.productInfo)
 
 const {thumbnail,productname, producttype, price, quantity, description} = product
-console.log(product)
+console.log(product, reviewsList)
 const handleOnChange=(e)=>{
   const {value}= e.target;
   setQty(value)
@@ -38,17 +39,20 @@ else{
   useEffect(()=>{
     _id && dispatch(getAProductAction(_id))
 
-  },[_id])
+  }, [_id])
 
 
   console.log(_id)
+  const productSpecificReview = reviewsList.filter((review)=>review.status === "active" && review.productId === _id)
+  const avgRating = productSpecificReview.reduce((acc, item)=>acc + item.num , 0)/productSpecificReview.length
+  console.log(avgRating)
   return (
     <MainLayout title="cart list">
 
     <div className="wrapper">
      <div className='bottom p-3 d-flex justify-content-between gap-2'>
       <div  className='thumbnail'>
-      <img src= {thumbnail} alt="" width={100} />
+      <img src= {thumbnail} alt="" width={150} />
       </div>
       <div  className='details'>
       <h5>
@@ -56,13 +60,8 @@ else{
       </h5>
 
       <p >only {quantity} left stock (more on the way)</p>
-      <div className='star'>
-      <FaStar className='text-warning' />
-      <FaStar className='text-warning' />
-      <FaStar className='text-warning' />
-      <FaStar className='text-warning' />
-      <FaStar className='text-warning' />
-      </div>
+    
+     <ReviewStars avgRating={avgRating}/>
       <hr />
       <p className='co'>Price: {price}$</p>
       <input onChange={handleOnChange} value={qty} type="number" />
