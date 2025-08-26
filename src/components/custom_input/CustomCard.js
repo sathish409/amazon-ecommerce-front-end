@@ -1,17 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Button } from 'react-bootstrap';
 import Card from "react-bootstrap/Card";
+import { Row, Col } from "react-bootstrap";
 
-export const CustomCard = ({thumbnail,producttype,description }) => {
+export const CustomCard = ({product }) => {
+    const [index, setIndex] = useState(0);
+console.log(product)
+
   return (
      <Card style={{ width: "10rem" }} className="p-2 shadow-lg flex-grow-1">
-      <Card.Img variant="top" src={thumbnail} />
+     {product.images?.length > 0 && (
+        <Card.Img
+          variant="top"
+          src={`http://localhost:8000${product.images[index]}`}
+          style={{ height: "180px", objectFit: "cover" }}
+        />
+      )}
       <Card.Body>
-        <Card.Title>{producttype.slice(0, 10)}</Card.Title>
+        <Card.Title>{product.producttype.slice(0, 10)}</Card.Title>
         <Card.Text>
-          {description.slice(0, 15)} 
+          {product.description.slice(0, 15)} 
         </Card.Text>
+     
       </Card.Body>
     </Card>
+ 
+ 
   )
 }
 

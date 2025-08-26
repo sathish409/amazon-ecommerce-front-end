@@ -63,12 +63,16 @@ const productSlice= createSlice({
             state.reviewsList=payload
                 
         },
+        clearCart(state) {
+            console.log("clearCart reducer called—state before:", state.cartList);
+      state.cartList = [];
+    },
         
     }
 })
 
 const {reducer, actions} =  productSlice;
 
-export const {setProductList, setAProduct, setCartList, setSearchProduct, setReviewsList}= actions;
+export const {clearCart, setProductList, setAProduct, setCartList, setSearchProduct, setReviewsList}= actions;
  export default reducer;
 

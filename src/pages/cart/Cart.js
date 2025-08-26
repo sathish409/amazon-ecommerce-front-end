@@ -9,6 +9,7 @@ import { Button, Table } from 'react-bootstrap'
 import { FaCaretRight } from "react-icons/fa";
 
 const Cart = () => {
+      const [index, setIndex] = useState(0);
     const dispatch = useDispatch()
     const [qty, setQty] = useState(1)
     const {_id} = useParams()

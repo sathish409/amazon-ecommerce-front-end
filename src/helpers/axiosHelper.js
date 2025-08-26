@@ -166,16 +166,39 @@ export const getAllCategories=async()=>{
       });
 
 }
-export const postProduct=async(data)=>{
+export const postProduct=async(form, files = [])=>{
+    const formData = new FormData();
 
+  // Append text fields
+formData.append("productname", form.productname);
+formData.append("producttype", form.producttype);
+formData.append("sku", form.sku);
+formData.append("quantity", form.quantity);
+formData.append("price", form.price);
+formData.append("description", form.description);
+formData.append("onsale", form.onsale);
+
+formData.append("discount", form.discount);
+
+formData.append("trending", form.trending);
+
+
+
+  // Append files (multiple images)
+  files.forEach((file) => formData.append("images", file));
+
+  console.log(formData); // Will show FormData object in console
     return axiosProcessor({
         method: "post",
         url: productEP,
         isPrivate: true,
-        data,
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" }, // important!
+
       });
 
 }
+
 
 export const getAllProducts=async()=>{
 

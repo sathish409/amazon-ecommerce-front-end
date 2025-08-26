@@ -95,7 +95,7 @@ export const Header = () => {
             <span className="nav-link">& Orders</span>
           </Link>
         </div>
-        <div className="link">
+        <div className="link-cart">
           <Link to="/cart/:_id">
             <IoCartOutline className="basket" />
           </Link>

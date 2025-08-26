@@ -8,7 +8,7 @@ export const ReviewStars = ({ avgRating }) => {
     ? avgRating
     : maxStar;
   const fullRating = Math.floor(ratingNum); //
-  const isHalfStar = ratingNum - fullRating >= 0.5;
+  const isHalfStar = ratingNum - fullRating >= 0.1;
   const emptyStar = isHalfStar
     ? maxStar - fullRating - 1
     : maxStar - fullRating;

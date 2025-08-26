@@ -18,41 +18,50 @@ const Home = () => {
         <CarouselInput />
     
         <Container className="mt-5 fluid">
-        <Row >
-              <div className="On-sale mt-3">
+             <div className="On-sale mt-3">
           <h4>On sale</h4>
           <hr />
         </div>
-          <Col className="d-flex justify-content-between flew-wrap mt-5 gap-3">
+        <Row className="g-3">
+           
+          
             {productList.map(
               (item, i) =>
-                item.onsale === true && (
-                  <Link to={`/product-landing/${item._id}`} className="">
-                    <CustomCard {...item} />
+                item.onsale === true && (  <Col key={item._id} xs={6} md={4} lg={3}>
+                  <Link
+                    to={`/product-landing/${item._id}`}
+                    className="nav-link"
+                  >
+                    <CustomCard key={i} product={item}/>
                   </Link>
+                    </Col>
                 )
             )}
-          </Col>
+   
         </Row>
 
         <div className="On-sale mt-3">
           <h4>Trending</h4>
           <hr />
         </div>
-        <Row className="mt-5">
-          <Col className="sale d-flex justify-content-between mt-2 gap-3">
+        <Row className="g-3">
+          
             {productList.map(
-              (item, i) =>
+          
+              (item, i) =>    
+              
                 item.trending === true && (
+                  <Col key={item._id} xs={6} md={4} lg={3}>
                   <Link
                     to={`/product-landing/${item._id}`}
                     className="nav-link"
                   >
-                    <CustomCard {...item} />
+                    <CustomCard key={i} product={item}/>
                   </Link>
+                    </Col>
                 )
-            )}
-          </Col>
+                    )}
+
         </Row>
         </Container>
 

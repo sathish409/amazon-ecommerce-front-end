@@ -1,13 +1,14 @@
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import {Modal} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { setShowModal } from '../../system-input/systemSlice';
 
 export const CustomModel=({title, children, ...rest})=> {
+  
     const {showModal} = useSelector((state)=>state.systemInfo)
     const dispatch = useDispatch()
   return (
-    <Modal
+    <Modal show={showModal} 
     onHide={() => dispatch(setShowModal(false))}
     {...rest}
       size="lg"

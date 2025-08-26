@@ -15,8 +15,9 @@ const AddProduct = () => {
   const [form, setForm] = useState({})
   const dispatch = useDispatch()
 
+  const [files, setFiles] = useState([]); // for file uploads
   const {catList} = useSelector((state)=>state.categoryInfo)
-
+const [previews, setPreviews] = useState([]);
 
   useEffect(()=>{
    dispatch(getAllProductAction())
@@ -24,8 +25,10 @@ const AddProduct = () => {
 
  const handleOnSubmit=async(e)=>{
   e.preventDefault()
+ 
 
-  const pending = postProduct(form)
+
+  const pending = postProduct(form, files)
   toast.promise(pending, 
     {
       pending:"please wait..."
@@ -35,6 +38,15 @@ const AddProduct = () => {
     
 
  } 
+ const handeleFileUpload = (e)=>{
+  const selectedFiles = Array.from(e.target.files)
+  setFiles(selectedFiles)
+   setForm({ ...form, images: selectedFiles });
+  console.log(selectedFiles)
+     const filePreviews = selectedFiles.map((file) => URL.createObjectURL(file));
+    setPreviews(filePreviews);
+ }
+ console.log(form)
 
  const handleOnChange= (e)=>{
  const {name, value} = e.target;
@@ -70,13 +82,6 @@ const AddProduct = () => {
       type:"text",
       required:true,
     },
-    {
-      label:"Thumbnail",
-      name:"thumbnail",
-      placeholder:"http:/...",
-      type:"text",
-      required:true,
-      },
       {
         label:"Quantity",
         name:"quantity",
@@ -149,6 +154,25 @@ const AddProduct = () => {
 
         {inputs.map((item, i)=>  <CustomInput key={i} {...item} onChange={handleOnChange}/>)}
 <div className="d-grid mt-2">
+    {/* File Upload */}
+          <Form.Group className="mb-3">
+            <Form.Label>Upload Product Images</Form.Label>
+            <Form.Control type="file" multiple onChange={handeleFileUpload} />
+          </Form.Group>
+             {/* Preview Selected Images */}
+      {previews.length > 0 && (
+        <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
+          {previews.map((src, index) => (
+            <img
+              key={index}
+              src={src}
+              alt={`preview ${index}`}
+              style={{ width: "100px", height: "100px", objectFit: "cover", border: "1px solid #ccc" }}
+            />
+          ))}
+        </div>
+      )}
+          
         <Button type="submit" variant="warning">
            {""}
      Add Product
