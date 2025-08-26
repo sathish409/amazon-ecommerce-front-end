@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      # Install project dependencies
+      - node -v
+      - npm i
+
+  build:
+    commands:
+      # Build the react app
+      - npm run build
+      - aws s3 sync build/ s3://my-app-reactbuild
+      - aws cloudfront create-invalidation --distribution-id E2R4D1DA76861U --paths /* 
