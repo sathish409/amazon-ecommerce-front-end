@@ -51,7 +51,6 @@
 }
 .nav-link {
   height: -40px;
-
 }
 
 .serach-icon {
@@ -74,8 +73,8 @@
   color: white;
   border-color: white;
 }
-.link-cart{
-    color: white;
+.link-cart {
+  color: white;
 }
 .cart {
   display: flex;
@@ -100,6 +99,15 @@
   flex-direction: column;
   gap: 10px;
   padding: 10px;
+}
+.carousel {
+}
+.carousel img {
+  height: 400px;
+  object-fit: cover;
+}
+.products {
+  height: auto;
 }
 
 /* signin and signup */
@@ -141,7 +149,12 @@
 }
 
 /* dashboard */
+.total-sales{
+width: 200px;
+border-radius: 50px;
+color: green;
 
+}
 .bottom ul li {
   list-style-type: none;
   display: flex;
@@ -210,7 +223,6 @@ a {
 .star {
   color: yellow;
   gap: 0;
- 
 }
 .add button {
   width: 100%;
@@ -295,7 +307,6 @@ a {
   width: 70%;
 }
 .method {
-  padding: 0 37.5% 0 8.5%;
 }
 .deliver-address {
   justify-content: space-between;
@@ -304,4 +315,36 @@ a {
 }
 .new-star:hover {
   cursor: pointer;
+}
+/* //cart page */
+
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.line-through {
+  text-decoration-line: line-through;
+}
+.Image {
+  padding-right: 3px; /* reduce gap next to image */
+  border-radius: 10px;
+}
+
+.product-details {
+  padding-left: -10px; /* reduce default bootstrap col padding */
+}
+.summary {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+.line {
+  font-size: 20px;
+  font-weight: bold;
+}
+.price-left {
+  font-size: 1.5rem;
+
+ 
 }

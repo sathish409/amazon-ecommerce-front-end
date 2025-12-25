@@ -3,12 +3,13 @@ import Carousel from 'react-bootstrap/Carousel';
 
 export const CarouselInput=()=> {
   return (
-    <Carousel data-bs-theme="dark">
+    <Carousel className='carousel' data-bs-theme="dark">
       <Carousel.Item>
         <img
           className="d-block w-100"
           src="https://m.media-amazon.com/images/I/61NSxzrSfNL._SX3000_.jpg"
           alt=""
+            style={{ height: "500px", objectFit: "cover" }}
         />
         <Carousel.Caption>
           <h5>First slide label</h5>
@@ -20,6 +21,7 @@ export const CarouselInput=()=> {
           className="d-block w-100"
           src="https://m.media-amazon.com/images/I/61p0UJBaN7L._SX3000_.jpg"
           alt="Second slide"
+         style={{ height: "500px", objectFit: "cover" }}
         />
         <Carousel.Caption>
           <h5>Second slide label</h5>
@@ -31,6 +33,7 @@ export const CarouselInput=()=> {
           className="d-block w-100"
           src="https://m.media-amazon.com/images/I/716OMPWDNvL._SX3000_.jpg"
           alt="Third slide"
+        style={{ height: "500px", objectFit: "cover" }}
         />
         <Carousel.Caption>
           <h5>Third slide label</h5>

@@ -129,8 +129,8 @@ const CheckOut = () => {
   };
   return (
     <div className="wrapper">
-      <div className="am-box">
-        <div className="nav-bar d-flex border">
+      <div className="am-box form-center p-4">
+        <div className="nav-bar d-flex border p-2 shadow align-items-center">
           <div className="am-img">
             <Link to="/">
               <img
@@ -154,16 +154,17 @@ const CheckOut = () => {
 
       <div className="container d-flex mt-4">
         {showSpinner && (
-          <div className="left border p-4">
-            <span>Customer account details</span>
+          <div className="left border form-center shadow p-4">
+            <span className="p-5">Customer account details</span>
             <hr />
-            <Form onSubmit={handleOnSubmit} className="rounded ">
+            <Form onSubmit={handleOnSubmit} className="rounded p-5 ">
               {inputs.map((item, i) => (
                 <CustomInput onChange={handleOnChange} key={i} {...item} />
               ))}
             </Form>
-            <Form onSubmit={handleOnSubmit} className="rounded ">
-              <span>Delivery address details</span>
+            <Form onSubmit={handleOnSubmit} className="rounded p-5">
+              <span className="p-2 ">Delivery address details</span>
+              <hr />
               {addressInput.map((item, i) => (
                 <CustomInput onChange={handleOnChange} key={i} {...item} />
               ))}
@@ -174,8 +175,11 @@ const CheckOut = () => {
             </Form>
           </div>
         )}
-        {!showSpinner && (
-          <div className="deliver-address d-flex">
+     
+      </div>
+      <div className="p-4 form-center">
+ {!showSpinner && (
+          <div className="deliver-address  rounded">
             <div className="delivery">
               <h4>1 Delivery Address</h4>
             </div>
@@ -188,14 +192,10 @@ const CheckOut = () => {
             </div>
           </div>
         )}
-      </div>
-
       {!showSpinner && (
-        <div className="method ">
-          <hr />
-
-          <div className="payment-method">
-            2 {""} Add Payment Method
+        <div className="method mt-4 rounded">
+          <div className="payment-method ">
+        <h4>2 Add Payment Method</h4>
             <div className="">
               <Button
                 variant="warning"
@@ -203,7 +203,7 @@ const CheckOut = () => {
               >
                 Add Card Details
               </Button>
-              <Elements stripe={stripePromise}>
+              <Elements stripe={stripePromise} >
                 <CustomModel title="Add credit card details" show={showModal}>
                   {console.log(showModal)}
                   <CheckoutForm add={form} />
@@ -211,17 +211,10 @@ const CheckOut = () => {
               </Elements>
             </div>
           </div>
-
-          <hr />
-
-          <div className="items-delivery">
-            3 Items and delivery
-            <div className=""> delivery to ....</div>
-          </div>
-
-          <hr />
         </div>
       )}
+      </div>
+  
     </div>
   );
 };

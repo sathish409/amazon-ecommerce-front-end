@@ -9,6 +9,8 @@ import Form from 'react-bootstrap/Form';
 const ReviewTable = () => {
     const dispatch = useDispatch()
     const {reviewsList} = useSelector((state)=>state.productInfo)
+    const {user} =useSelector((state)=> state.userInfo)
+    const myReviewList = reviewsList?.filter((review)=>review.userId === user._id)
    useEffect(()=>{
       dispatch(getAllReviewAction())
    },[dispatch])
@@ -48,7 +50,7 @@ const ReviewTable = () => {
         </tr>
       </thead>
       <tbody>
-  {reviewsList.map(({_id, status, productName,title, message, num}, i)=>(
+  {myReviewList.map(({_id, status, productName,title, message, num}, i)=>(
           <tr key={_id}>
           
           <td>{i + 1}</td>

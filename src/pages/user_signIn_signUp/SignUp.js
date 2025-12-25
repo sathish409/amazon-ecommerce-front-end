@@ -1,11 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CustomInput } from '../../components/custom_input/CustomInput'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { FaCaretRight } from "react-icons/fa";
-
+import { postSellerUser } from '../../helpers/axiosHelper';
+import { toast } from "react-toastify";
+import { SiGnuprivacyguard } from "react-icons/si";
+const initialState = {
+  fname: "",
+  lname: "",
+  email: "",
+  phone: "",
+  password: "",
+  confirmPassword: "",
+};
 const SignUp = () => {
+  const [buyer, setBuyer]= useState(initialState)
+  const handleOnChange=(e)=>{
+    const {name, value} = e.target
+    setBuyer({
+      ...buyer,
+      [name]:value,
+    })
+  }
+  console.log(buyer)
+  const handleOnSubmit=async(e)=>{
+    e.preventDefault()
+     const { confirmPassword, ...rest } = buyer;
+        if (confirmPassword !== rest.password) {
+          return alert("password do not match");
+        }
+    
+        const pending = postSellerUser(rest);
+        toast.promise(pending, {
+          pending: "please wait...",
+        });
+        const { status, message } = await pending;
+        toast[status](message);
+  }
     const inputs=[
         {
           label:"Fisrt Name",
@@ -59,10 +92,10 @@ const SignUp = () => {
       </Link>
       </div>
   
-    <Form className='border form-center bg-light  p-4 rounded mt-5'>
+    <Form onSubmit={handleOnSubmit} className='border form-center bg-light  p-4 rounded mt-5'>
     <h2>Create account</h2>
     <hr />
-        {inputs.map((item, i)=>  <CustomInput key={i} {...item}/>)}
+        {inputs.map((item, i)=>  <CustomInput onChange={handleOnChange} key={i} {...item}/>)}
 <div className="d-grid mt-2">
         <Button type="submit" variant="primary"> Submit</Button>
         </div>
@@ -71,6 +104,12 @@ const SignUp = () => {
             <Link to="/signin">
             Signin <FaCaretRight />
             </Link>
+              <div className="">
+           Seller SignUp {""}
+            <Link to="/seller_signup">
+            SignUp <SiGnuprivacyguard />
+            </Link>
+        </div>
         </div>
     </Form>
     

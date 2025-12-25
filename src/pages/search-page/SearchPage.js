@@ -28,7 +28,7 @@ console.log(searchProduct)
    justify-content-between  mt-2 gap-3'>
   
   {searchProduct.map((item, i)=><Link to={`/product-landing/${item._id}`} className='nav-link'>
-    <CustomCard  {...item}/>
+    <CustomCard  className="h-100" key={i} product={item}/>
     
     </Link>
   

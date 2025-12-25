@@ -11,6 +11,9 @@ import { setShowModal } from "../../system-input/systemSlice";
 import {
   setAProduct,
   setCartList,
+  setDecrementProduct,
+  setDeleteProduct,
+  setIncrementProduct,
   setProductList,
   setReviewsList,
   setSearchProduct,
@@ -44,6 +47,18 @@ export const getAProductAction = (_id) => async (dispatch) => {
 export const postToCart = (product) => async (dispatch) => {
   console.log(product);
   dispatch(setCartList(product));
+};
+export const  deleteProductItem = (_id) => async (dispatch) => {
+  console.log(_id);
+  dispatch(setDeleteProduct(_id));
+};
+export const  incrementProductItem = (data) => async (dispatch) => {
+  console.log(data);
+  dispatch(setIncrementProduct(data));
+};
+export const  decrementProductItem = (data) => async (dispatch) => {
+  console.log(data);
+  dispatch(setDecrementProduct(data));
 };
 export const getAllReviewAction = () => async (dispatch) => {
   const reviewsList = await getReviews();

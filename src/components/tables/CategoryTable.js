@@ -3,6 +3,7 @@ import { Button, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllcategoryAction } from '../../pages/category/CategoryAction'
 import { Link } from 'react-router-dom'
+import { CustomModel } from '../custom-modal/CustomModel'
 
 export const CategoryTable = () => {
   const dispatch = useDispatch()
@@ -40,11 +41,13 @@ export const CategoryTable = () => {
       <td>{slug}</td>
 
       <td>
+        <CustomModel>
          <Button variant='warning' >
         <Link className="nav-link" to={`/edit-category/${_id}`}>
       Edit
         </Link>
         </Button>
+        </CustomModel>
       </td>
     </tr>
       ))}

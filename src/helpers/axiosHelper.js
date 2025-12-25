@@ -50,7 +50,7 @@ export const postSellerUser=async(data)=>{
 
     return axiosProcessor({
         method: "post",
-        url: userEP + "/seller",
+        url: userEP + "/buyer",
         data,
       });
 
@@ -233,15 +233,38 @@ export const getOneProduct=async(_id)=>{
 
 export const postPayment= async(data)=>{
 
-    return axiosProcessor({
-        method: "post",
-        url: paymentEP  +  "/create-payment",
-        isPrivate: true,
-      data,
-        
-      });
+ const response = await axiosProcessor({
+    method: "post",
+    url: paymentEP + "/create-payment",
+    isPrivate: true,
+    data,
+  });
+  // Return only the data object
+  return response;
 
+ 
 }
+export const postSale= async(data)=>{
+console.log(data)
+   const res = await axiosProcessor({
+    method: "post",
+    url: paymentEP + "/sale",
+    isPrivate: true,
+    data,
+  });
+  return res.data;
+}
+export const fetchData= async()=>{
+
+  return axiosProcessor({
+    method: "get",
+    url: paymentEP + "/fetch_data",
+    isPrivate: true,
+    
+  });
+   
+}
+
 export const reduceProductQty=async(data)=>{
     console.log(data);
         return axiosProcessor({

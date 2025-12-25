@@ -10,7 +10,8 @@ export const Sidebar = () => {
         <div className="top mt-2">
             Hello, {user.fname}
         </div>
-        <div className="bottom mt-5">
+        {user?._id && user?.role === "seller" ? (
+              <div className="bottom mt-5">
         <ul>
                 <li>
                     <Link className='nav-link  d-flex align-items-center gap-2 ' to="/dashboard">Dashboard</Link>
@@ -57,6 +58,44 @@ export const Sidebar = () => {
                 </li>
             </ul>
         </div>
+
+        )
+    :
+    
+    ( <div className="bottom mt-5">
+          <ul>
+                <li>
+                    <Link className='nav-link  d-flex align-items-center gap-2 ' to="/dashboard">Dashboard</Link>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <Link className='nav-link  d-flex align-items-center gap-2 ' to="/payment-option">Payment Option</Link>
+                </li>
+            </ul>
+             <ul>
+                <li>
+                    <Link className='nav-link  d-flex align-items-center gap-2 ' to="/order-history">Order</Link>
+                </li>
+            </ul>
+                  
+                 <ul>
+                <li>
+                    <Link className='nav-link  d-flex align-items-center gap-2 ' to="/customer">Customer</Link>
+                </li>
+            </ul>
+             <ul>
+                <li>
+                    <Link className='nav-link  d-flex align-items-center gap-2 ' to="/reviews-table">Reviews table</Link>
+                    
+                </li>
+            </ul>
+
+            </div>
+
+    )
+    }
+      
 
 
     </div>

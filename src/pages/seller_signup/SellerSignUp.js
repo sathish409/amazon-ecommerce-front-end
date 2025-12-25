@@ -106,6 +106,8 @@ const SellerSignUp = () => {
       >
         <h2>Create account</h2>
         <hr />
+      <h4>Seller SignUp</h4>
+        <hr />
         {inputs.map((item, i) => (
           <CustomInput onChange={handleOnChange} key={i} {...item} />
         ))}

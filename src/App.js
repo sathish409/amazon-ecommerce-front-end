@@ -27,6 +27,7 @@ import CheckOut from "./pages/checkout/CheckOut";
 import SearchPage from "./pages/search-page/SearchPage";
 import OrderHistory from "./pages/order/OrderHistory";
 import ReviewTable from "./pages/reviews/ReviewTable";
+import { UserRoute } from "./components/private-route/UserRoute";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -60,10 +61,64 @@ function App() {
         <Route path="/add-product" element={<AddProduct />}></Route>
         <Route path="/edit-category/_id" element={<EditCategory />}></Route>
 
-        {/* private routes */}
+
 
         <Route path="/seller_signup" element={<SellerSignUp />}></Route>
+      
+
         <Route
+          path="/payment-option"
+          element={
+         
+              <PaymentOption />
+
+          }
+        ></Route>
+        <Route
+          path="/order-history"
+          element={
+          
+              <OrderHistory />
+        
+          }
+        ></Route>
+        <Route
+          path="/customer"
+          element={
+          
+              <Customer />
+       
+          }
+        ></Route>
+        <Route
+          path="/profile"
+          element={
+           
+              <MyProfile />
+          
+          }
+        ></Route>
+        <Route
+          path="/dashboard"
+          element={
+          <UserRoute>
+  <Dashboard />
+          </UserRoute>
+            
+         
+          }
+        ></Route>
+      
+        <Route
+          path="/reviews-table"
+          element={
+          
+              <ReviewTable />
+       
+          }
+        ></Route>
+                {/* private routes */}
+          <Route
           path="/product"
           element={
             <PrivateRoute>
@@ -71,60 +126,11 @@ function App() {
             </PrivateRoute>
           }
         ></Route>
-
-        <Route
-          path="/payment-option"
-          element={
-            <PrivateRoute>
-              <PaymentOption />
-            </PrivateRoute>
-          }
-        ></Route>
-        <Route
-          path="/order-history"
-          element={
-            <PrivateRoute>
-              <OrderHistory />
-            </PrivateRoute>
-          }
-        ></Route>
-        <Route
-          path="/customer"
-          element={
-            <PrivateRoute>
-              <Customer />
-            </PrivateRoute>
-          }
-        ></Route>
-        <Route
-          path="/profile"
-          element={
-            <PrivateRoute>
-              <MyProfile />
-            </PrivateRoute>
-          }
-        ></Route>
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        ></Route>
-        <Route
+          <Route
           path="/category"
           element={
             <PrivateRoute>
               <Category />
-            </PrivateRoute>
-          }
-        ></Route>
-        <Route
-          path="/reviews-table"
-          element={
-            <PrivateRoute>
-              <ReviewTable />
             </PrivateRoute>
           }
         ></Route>

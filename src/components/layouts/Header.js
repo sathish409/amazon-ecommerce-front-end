@@ -27,6 +27,7 @@ export const Header = () => {
 
     setForm(value.toLowerCase());
   };
+  console.log(form)
   const handleOnSubmit = () => {
     setFilteredCategory(searchCategory);
   };

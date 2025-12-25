@@ -15,19 +15,19 @@ const Home = () => {
   return (
     <MainLayout>
       <div className="home">
-        <CarouselInput />
+        <CarouselInput className="carousel"/>
     
-        <Container className="mt-5 fluid">
+        <Container className="products mt-5 fluid">
              <div className="On-sale mt-3">
           <h4>On sale</h4>
           <hr />
         </div>
-        <Row className="g-3">
+        <Row className="g-3 p-3 shadow rounded">
            
           
             {productList.map(
               (item, i) =>
-                item.onsale === true && (  <Col key={item._id} xs={6} md={4} lg={3}>
+                item.onsale === true && (  <Col className="" key={item._id} xs={6} md={4} lg={3}>
                   <Link
                     to={`/product-landing/${item._id}`}
                     className="nav-link"
@@ -44,7 +44,7 @@ const Home = () => {
           <h4>Trending</h4>
           <hr />
         </div>
-        <Row className="g-3">
+        <Row className="g-3 p-3 shadow rounded">
           
             {productList.map(
           
@@ -56,7 +56,7 @@ const Home = () => {
                     to={`/product-landing/${item._id}`}
                     className="nav-link"
                   >
-                    <CustomCard key={i} product={item}/>
+                    <CustomCard className="h-100" key={i} product={item}/>
                   </Link>
                     </Col>
                 )

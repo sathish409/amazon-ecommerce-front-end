@@ -31,16 +31,16 @@ const productSlice= createSlice({
             ///payload will have, id and quantity
             //cart list [] = {id: , price: , quantity}
             //1. get product from state.product using id
-          const {_id, discount, price,producttype, productname, thumbnail} = payload.product
+          const {_id, discount, price,producttype, productname, images} = payload.product
           const itemPrice = price*(1 - discount / 100)*payload.qty;
          const item  = {
             _id,
+            images,
             discountPrice:itemPrice ,
-            price:itemPrice,
+            price:price,
             productquantity:payload.qty,
             producttype,
             productname,
-            thumbnail,
             discount,
            
 
@@ -58,6 +58,35 @@ const productSlice= createSlice({
         
           
         },
+          setDeleteProduct:(state, {payload})=>{
+            console.log(payload)
+            ///payload will have, id and quantity
+            //cart list [] = {id: , price: , quantity}
+            //1. get product from state.product using id
+          
+       const newCartItems = state.cartList.filter((product) => product._id !== payload._id);
+         
+       state.cartList = newCartItems
+        
+          
+        },
+        setIncrementProduct:(state, {payload})=>{
+            console.log(payload)
+            const item = state.cartList.find((product)=>product._id === payload._id)
+            if(item){
+                item.productquantity += payload.qty || 1
+            }
+
+        },
+        setDecrementProduct:(state, {payload})=>{
+            console.log(payload)
+            const item = state.cartList.find((product)=>product._id === payload._id)
+            if(item){
+                item.productquantity -= payload.qty || 1
+            }
+
+        },
+
         setReviewsList:(state, {payload=[]})=>{
             console.log(payload)
             state.reviewsList=payload
@@ -73,6 +102,6 @@ const productSlice= createSlice({
 
 const {reducer, actions} =  productSlice;
 
-export const {clearCart, setProductList, setAProduct, setCartList, setSearchProduct, setReviewsList}= actions;
+export const {clearCart,setDeleteProduct, setProductList, setAProduct, setCartList, setSearchProduct, setReviewsList, setIncrementProduct, setDecrementProduct}= actions;
  export default reducer;
 
