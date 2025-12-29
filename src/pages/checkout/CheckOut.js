@@ -175,10 +175,9 @@ const CheckOut = () => {
             </Form>
           </div>
         )}
-     
       </div>
       <div className="p-4 form-center">
- {!showSpinner && (
+        {!showSpinner && (
           <div className="deliver-address  rounded">
             <div className="delivery">
               <h4>1 Delivery Address</h4>
@@ -192,29 +191,28 @@ const CheckOut = () => {
             </div>
           </div>
         )}
-      {!showSpinner && (
-        <div className="method mt-4 rounded">
-          <div className="payment-method ">
-        <h4>2 Add Payment Method</h4>
-            <div className="">
-              <Button
-                variant="warning"
-                onClick={() => dispatch(setShowModal(true))}
-              >
-                Add Card Details
-              </Button>
-              <Elements stripe={stripePromise} >
-                <CustomModel title="Add credit card details" show={showModal}>
-                  {console.log(showModal)}
-                  <CheckoutForm add={form} />
-                </CustomModel>
-              </Elements>
+        {!showSpinner && (
+          <div className="method mt-4 rounded">
+            <div className="payment-method ">
+              <h4>2 Add Payment Method</h4>
+              <div className="">
+                <Button
+                  variant="warning"
+                  onClick={() => dispatch(setShowModal(true))}
+                >
+                  Add Card Details
+                </Button>
+                <Elements stripe={stripePromise}>
+                  <CustomModel title="Add credit card details" show={showModal}>
+                    {console.log(showModal)}
+                    <CheckoutForm add={form} />
+                  </CustomModel>
+                </Elements>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
-  
     </div>
   );
 };
