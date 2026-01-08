@@ -7,7 +7,7 @@ phases:
     commands:
       - echo Installing dependencies...
       - node -v
-      - npm install
+      - npm ci
 
   build:
     commands:
@@ -17,12 +17,9 @@ phases:
   post_build:
     commands:
       - echo Deploying to S3...
-      - aws s3 sync build/ s3://my-app-reactbuild --delete
+      - aws s3 sync build/ s3://ecommerce-fegl-bucket --delete
       - echo Creating CloudFront invalidation...
-      - aws cloudfront create-invalidation \
-          --distribution-id E2R4D1DA76861U \
-          --paths "/*"
-
+      - aws cloudfront create-invalidation --distribution-id E2R4D1DA76861U --paths "/*"
 artifacts:
   files:
     - '**/*'
