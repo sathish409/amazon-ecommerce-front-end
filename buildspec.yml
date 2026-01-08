@@ -1,18 +1,29 @@
 version: 0.2
 
 phases:
-  pre_build:
+  install:
+    runtime-versions:
+      nodejs: 18
     commands:
-    - npm i -g yarn
-    - yarn
-   
+      - echo Installing dependencies...
+      - node -v
+      - npm -v
+      - npm i -g npm@10
+      - npm -v
+      - npm install
 
   build:
     commands:
-    -yarn build
+      - echo Building React app...
+      - npm run build
+
+  post_build:
+    commands:
+      - echo Deploying to S3...
+      - aws s3 sync build/ s3://ecommerce-fegl-bucket --delete
+      - echo Creating CloudFront invalidation...
+      - aws cloudfront create-invalidation --distribution-id E2R4D1DA76861U --paths "/*"
 
 artifacts:
   files:
-    - '**/*'
-    discard-paths: no
-    base-directory: dist
+    - "**/*"
