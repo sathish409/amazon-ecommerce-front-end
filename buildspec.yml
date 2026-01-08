@@ -23,5 +23,6 @@ phases:
       - aws s3 sync build/ s3://ecommerce-fegl-bucket --delete
 
 artifacts:
+  base-directory: build
   files:
     - "**/*"
